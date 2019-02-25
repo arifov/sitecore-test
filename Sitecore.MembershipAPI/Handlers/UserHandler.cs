@@ -5,6 +5,9 @@ using Sitecore.MembershipAPI.Models;
 
 namespace Sitecore.MembershipAPI.Handlers
 {
+    /// <summary>
+    /// Helper class which encapsulates all user management logic and makes api controller simple as possible
+    /// </summary>
     public class UserHandler
     {
         private readonly IUserService _userService;
