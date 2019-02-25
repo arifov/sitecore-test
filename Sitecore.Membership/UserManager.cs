@@ -7,6 +7,10 @@ using Sitecore.Membership.Cache;
 
 namespace Sitecore.Membership
 {
+    /// <summary>
+    /// A wrapper around Sitecore.MembershipAPI.
+    /// Supports user profile caching
+    /// </summary>
     public class UserManager
     {
         private readonly RestClient _resApiClient;
@@ -28,7 +32,6 @@ namespace Sitecore.Membership
 
                 return response.Data;
             });
-
         }
 
         public ResponseData RegisterUser(string email, string password)
@@ -39,7 +42,6 @@ namespace Sitecore.Membership
             var response = _resApiClient.Execute<ResponseData>(request);
 
             return response.Data;
-
         }
 
         public void Logout(string email)

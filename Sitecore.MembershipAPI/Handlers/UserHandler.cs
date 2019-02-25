@@ -1,14 +1,13 @@
 ﻿using System;
 using Microsoft.Extensions.Configuration;
 using Sitecore.Membership.Data;
-using Sitecore.MembershipAPI.Controllers;
 using Sitecore.MembershipAPI.Models;
 
 namespace Sitecore.MembershipAPI.Handlers
 {
     public class UserHandler
     {
-        private readonly UserService _userService;
+        private readonly IUserService _userService;
 
         public UserHandler(IConfiguration configuration)
         {

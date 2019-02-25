@@ -23,7 +23,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{D503DE
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A99DB3E7-98C0-465D-96FF-85DCA61235A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sitecore.Membership.Tests", "Sitecore.Membership.Tests\Sitecore.Membership.Tests.csproj", "{36CB3A93-5861-4870-B018-0ACCC18E8178}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sitecore.Membership.Tests", "Sitecore.Membership.Tests\Sitecore.Membership.Tests.csproj", "{36CB3A93-5861-4870-B018-0ACCC18E8178}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B020C0E1-AF87-4247-A19C-58DF90BD08E4}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

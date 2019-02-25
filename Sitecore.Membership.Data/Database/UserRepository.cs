@@ -4,8 +4,15 @@ using Sitecore.Membership.Data.Database.Entiry;
 
 namespace Sitecore.Membership.Data.Database
 {
+    /// <summary>
+    /// User repository. Uses Dapper to access a database
+    /// </summary>
     public class UserRepository : BaseRepository
     {
+        public UserRepository(string connectionString) : base(connectionString)
+        {
+        }
+
         public User FindUserByEmail(string userEmail)
         {
             using (var connection = this.GetConnection())
@@ -35,10 +42,6 @@ namespace Sitecore.Membership.Data.Database
 
                 return false;
             }
-        }
-
-        public UserRepository(string connectionString) : base(connectionString)
-        {
         }
     }
 }

@@ -5,12 +5,9 @@ using Sitecore.MembershipAPI.Models;
 
 namespace Sitecore.MembershipAPI.Controllers
 {
-    public class LoginRequest
-    {
-        public string email { get; set; }
-        public string password { get; set; }
-    }
-
+    /// <summary>
+    /// WebAPI for user validation and registration
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class AccountController : ControllerBase

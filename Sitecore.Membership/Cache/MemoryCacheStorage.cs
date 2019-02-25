@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Runtime.Caching;
-using System.Text;
 
 namespace Sitecore.Membership.Cache
 {
@@ -11,8 +9,12 @@ namespace Sitecore.Membership.Cache
         void Remove(string cacheKey);
     }
 
+    /// <summary>
+    /// Simple memory cache implementation
+    /// </summary>
     public class MemoryCacheStorage : ICacheStorage
     {
+        //TODO: Add a config value for cache interval
         public T GetOrCreate<T>(string cacheKey, Func<T> getValue, int cacheInterval = 60) where T : class
         {
             var cache = MemoryCache.Default;

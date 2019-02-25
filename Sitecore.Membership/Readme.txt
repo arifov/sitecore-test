@@ -1,0 +1,1 @@
+﻿Sitecore.Membership - Authentication module or shared library that connects to the web service and also implements caching of credentials

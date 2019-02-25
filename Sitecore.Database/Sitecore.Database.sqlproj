@@ -63,4 +63,7 @@
   <ItemGroup>
     <Build Include="Tables\Users.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Readme.txt" />
+  </ItemGroup>
 </Project>

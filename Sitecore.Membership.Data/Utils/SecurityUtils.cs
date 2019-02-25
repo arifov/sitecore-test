@@ -4,6 +4,11 @@ namespace Sitecore.Membership.Data.Utils
 {
     public static class SecurityUtils
     {
+        /// <summary>
+        /// Basic hash implementation
+        /// </summary>
+        /// <param name="value">String to hash</param>
+        /// <returns>SHA1 hash of input string</returns>
         public static string HashSHA1(string value)
         {
             var sha1 = System.Security.Cryptography.SHA1.Create();
@@ -15,6 +20,7 @@ namespace Sitecore.Membership.Data.Utils
             {
                 sb.Append(hash[i].ToString("X2"));
             }
+
             return sb.ToString();
         }
     }

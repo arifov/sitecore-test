@@ -2,7 +2,7 @@
 
 “Single sign on” service for several sites that consists of several components:
 
-Sitecore.MembershipAPI - Authentication web service the verifies user credentials against an SQL database.
+Sitecore.MembershipAPI - Authentication web service that verifies user credentials against an SQL database.
 Sitecore.Membership - Authentication module on every site that connects to the web service and also implements caching of credentials.
 Sitecore.Web - a site-client that shows different content depending on a user. Uses JWT token for authentication.
 

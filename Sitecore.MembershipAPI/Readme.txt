@@ -1,0 +1,1 @@
+﻿Sitecore.MembershipAPI - Authentication web service that verifies user credentials against an SQL database. 

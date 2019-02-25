@@ -5,6 +5,9 @@ using Sitecore.Membership.Data.Utils;
 
 namespace Sitecore.Membership.Data
 {
+    /// <summary>
+    /// Incapsulates user registration and validation logic
+    /// </summary>
     public class UserService : IUserService
     {
         private readonly UserRepository _repository;
@@ -42,7 +45,8 @@ namespace Sitecore.Membership.Data
 
             if (!_repository.AddUser(user))
             {
-                userDto.ErrorMessage = "User with same credensials already exists";
+                //TODO: Add message to string resources
+                userDto.ErrorMessage = "User with same credentials already exists";
             };
 
             return userDto;
