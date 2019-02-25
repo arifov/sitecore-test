@@ -2,10 +2,16 @@
 
 namespace Sitecore.Web.Common
 {
+    /// <summary>
+    /// Common error interface
+    /// </summary>
     public interface IErrorResult
     {
     }
 
+    /// <summary>
+    /// UI Error model
+    /// </summary>
     public class ErrorResult : IErrorResult
     {
         public bool Succeeded { get; }
@@ -18,6 +24,9 @@ namespace Sitecore.Web.Common
         }
     }
 
+    /// <summary>
+    /// Bad request error
+    /// </summary>
     public class BadRequestResult : IErrorResult
     {
         public string Message { get; }

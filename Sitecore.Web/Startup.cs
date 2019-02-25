@@ -10,6 +10,7 @@ namespace Sitecore.Web
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            // Authentication based on JWT token
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(options =>
                     {

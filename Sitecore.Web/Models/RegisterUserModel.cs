@@ -2,6 +2,9 @@
 
 namespace Sitecore.Web.Models
 {
+    /// <summary>
+    /// User account registration class. For simplicity contains basic fields only
+    /// </summary>
     public class RegisterUserModel
     {
         [Required]
