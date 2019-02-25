@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+  <meta charset="utf-8" />
+  <title>Client Application</title>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+  <div>
+    <div class="container">
+      <div class="col-sm-10 col-sm-offset-1">
+        <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+        <div ng-view></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/lib/jquery/jquery-2.2.4.min.js"></script>
+  <script src="/lib/angular/angular.min.js"></script>
+  <script src="/lib/angular/angular-route.min.js"></script>
+
+  <script src="app.js"></script>
+  <script src="services/location.service.js"></script>
+  <script src="services/authentication.service.js"></script>
+  <script src="services/flash.service.js"></script>
+  <script src="compareTo.js"></script>
+
+  <script src="home/home.controller.js"></script>
+  <script src="login/login.controller.js"></script>
+  <script src="register/register.controller.js"></script>
+</body>
+</html>

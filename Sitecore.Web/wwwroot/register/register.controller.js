@@ -1,0 +1,37 @@
+﻿(function () {
+	'use strict';
+
+	angular
+		.module('app')
+		.controller('RegisterController', RegisterController);
+
+	RegisterController.$inject = ['LocationService', 'AuthenticationService', 'FlashService'];
+	function RegisterController(LocationService, AuthenticationService, FlashService) {
+		var vm = this;
+
+		vm.register = register;
+		vm.cancel = cancel;
+
+		function cancel() {
+			LocationService.RedirectToLogin();
+		}
+
+		function register() {
+			vm.dataLoading = true;
+			AuthenticationService.Register(vm.username, vm.password, vm.confirmpassword,
+				function success (response) {
+						FlashService.Success('Registration successful', true);
+						AuthenticationService.Login(vm.username, vm.password,
+							function (response) {
+								AuthenticationService.SetCredentials(response.userName, response.access_token);
+								LocationService.RedirectToHomeLocation();
+							});
+				},
+				function error(response) {
+					FlashService.Error(response.Error[0]);
+					vm.dataLoading = false;
+				});
+		}
+	}
+
+})();
