@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Sitecore.Membership;
 using Sitecore.Web.Common;
 using Sitecore.Web.Models;
+using Sitecore.Web.Tokenization;
 
 namespace Sitecore.Web.Controllers
 {
@@ -17,8 +16,14 @@ namespace Sitecore.Web.Controllers
     /// </summary>
     public class AccountController : Controller
     {
-        //TODO: Move to the config
+        //TODO: Move serviceUrl to the config
         private readonly UserManager _userManager = new UserManager(@"https://localhost:44320/api/");
+        private readonly ITokenProvider _tokenProvider;
+
+        public AccountController()
+        {
+            _tokenProvider = new TokenProvider();
+        }
 
         /// <summary>
         /// API JWT based authentication  
@@ -38,22 +43,9 @@ namespace Sitecore.Web.Controllers
                 return GetErrorResult(new ErrorResult(errors, false));
             }
 
-            var now = DateTime.UtcNow;
-
-            // Create a token
-            var jwt = new JwtSecurityToken(
-                    issuer: AuthOptions.ISSUER,
-                    audience: AuthOptions.AUDIENCE,
-                    notBefore: now,
-                    claims: identity.Claims,
-                    expires: now.Add(TimeSpan.FromMinutes(AuthOptions.LIFETIME)),
-                    signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
-
-            var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
-
             var response = new
             {
-                access_token = encodedJwt,
+                access_token = _tokenProvider.CreateToken(identity.Claims),
                 email = identity.Name
             };
 
@@ -69,21 +61,28 @@ namespace Sitecore.Web.Controllers
         /// <returns></returns>
         private ClaimsIdentity GetIdentity(string email, string password)
         {
-            var userProfile = _userManager.Validate(email, password);
+            ClaimsIdentity result = null;
 
-            if (userProfile != null)
+            try
             {
-                var claims = new List<Claim>
+                var userProfile = _userManager.Validate(email, password);
+
+                if (userProfile != null)
                 {
-                    new Claim(ClaimsIdentity.DefaultNameClaimType, userProfile.Email)
-                };
+                    var claims = new List<Claim>
+                    {
+                        new Claim(ClaimsIdentity.DefaultNameClaimType, userProfile.Email)
+                    };
 
-                var claimsIdentity = new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
-
-                return claimsIdentity;
+                    result = new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
+                }
+            }
+            catch (Exception ex)
+            {
+                //TODO: Add logging
             }
 
-            return null;
+            return result;
         }
 
         /// <summary>
