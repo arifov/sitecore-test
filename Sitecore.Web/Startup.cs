@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Sitecore.Membership;
 using Sitecore.Web.Tokenization;
 
 namespace Sitecore.Web
@@ -32,6 +33,9 @@ namespace Sitecore.Web
             
             //Use default dependency injection for custom JWT token provider
             services.AddSingleton<ITokenProvider, TokenProvider>();
+
+            //Use default dependency injection for membership implementation
+            services.AddSingleton<IUserManager, UserManager>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

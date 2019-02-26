@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
-using RestSharp;
+﻿using RestSharp;
 using Sitecore.Membership.Cache;
 
 namespace Sitecore.Membership
@@ -11,14 +7,17 @@ namespace Sitecore.Membership
     /// A wrapper around Sitecore.MembershipAPI.
     /// Supports user profile caching
     /// </summary>
-    public class UserManager
+    public class UserManager : IUserManager
     {
-        private readonly RestClient _resApiClient;
+        private RestClient _resApiClient;
         private readonly ICacheStorage _cache = new MemoryCacheStorage();
 
-        public UserManager(string serviceUrl)
+        public void Init(string serviceUrl)
         {
-            _resApiClient = new RestClient(serviceUrl);
+            if (_resApiClient == null)
+            {
+                _resApiClient = new RestClient(serviceUrl);
+            }
         }
 
         public UserProfile Validate(string email, string password)

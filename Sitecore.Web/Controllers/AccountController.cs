@@ -16,13 +16,15 @@ namespace Sitecore.Web.Controllers
     /// </summary>
     public class AccountController : Controller
     {
-        //TODO: Move serviceUrl to the config
-        private readonly UserManager _userManager = new UserManager(@"https://localhost:44320/api/");
+        private readonly IUserManager _userManager;
         private readonly ITokenProvider _tokenProvider;
 
-        public AccountController(ITokenProvider tokenProvider)
+        public AccountController(ITokenProvider tokenProvider, IUserManager userManager)
         {
             _tokenProvider = tokenProvider;
+            _userManager = userManager;
+
+            userManager.Init(@"https://localhost:44320/api/"); //TODO: Move serviceUrl to the config
         }
 
         /// <summary>
