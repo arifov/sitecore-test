@@ -1,3 +1,3 @@
 ﻿## Sitecore.Web
 
-An Angular 6 site-client that shows different content depending on a user. Uses JWT token for authentication.
+An AngularJS  site-client that shows different content depending on a user. Uses JWT token for authentication.
