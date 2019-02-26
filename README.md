@@ -30,4 +30,4 @@ a site-client that shows different content depending on a user. Uses JWT token f
 ## Notes
 
 1. Implemented using .NET Core 2.2 for applications and .NET Standard 2.0 for class libs
-2. I haven't managed to add any unit test. Please have a look on MyUnitTestsFromAnotherProject folder. There are few tests from my live application based on xUnit and Moq
+2. For extra unit test examples please have a look on MyUnitTestsFromAnotherProject folder. There are few tests from my live application based on xUnit and Moq
