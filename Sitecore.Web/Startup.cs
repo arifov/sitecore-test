@@ -29,6 +29,9 @@ namespace Sitecore.Web
                     });
 
             services.AddMvc();
+            
+            //Use default dependency injection for custom JWT token provider
+            services.AddSingleton<ITokenProvider, TokenProvider>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

@@ -20,9 +20,9 @@ namespace Sitecore.Web.Controllers
         private readonly UserManager _userManager = new UserManager(@"https://localhost:44320/api/");
         private readonly ITokenProvider _tokenProvider;
 
-        public AccountController()
+        public AccountController(ITokenProvider tokenProvider)
         {
-            _tokenProvider = new TokenProvider();
+            _tokenProvider = tokenProvider;
         }
 
         /// <summary>
